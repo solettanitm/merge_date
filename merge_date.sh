@@ -27,11 +27,13 @@ function merge_time()
                 begin=${arrT[0]}
                 temp=${arrT[1]}
             else
-               if [ ${arrT[0]} \< $temp -o ${arrT[0]} = $temp ]; then
+               if [ ${arrT[0]} \< $temp -o ${arrT[0]} = $temp ] && [ ${arrT[1]} \> $temp ]; then
                    mergedmap[$begin]="${arrT[1]}"
                    temp=${arrT[1]}
-               else
+               elif [ ${arrT[0]} \> $temp ]; then
                    mergedmap[${arrT[0]}]="${arrT[1]}"
+                   begin=${arrT[0]}
+                   temp=${arrT[1]}
                fi
             fi         
             index=$((index+1))           
